@@ -26,8 +26,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://npm.pkg.github.com/
-      - run: echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" >> ~/.npmrc
+          registry-url: https://npm.pkg.github.com
+      - run: echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > ~/.npmrc
+      - run: echo "@adovelopers:registry=https://npm.pkg.github.com" >> ~/.npmrc
       - run: npm ci
       - run: npm publish --access public
         env:
